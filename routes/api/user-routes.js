@@ -3,7 +3,10 @@ const {User} = require('../../models');
 
 //GET/api/users
 router.get('/',(req,res)=>{
- User.findAll()
+ User.findAll({
+   // this line to protect the password
+   attributes:{exclude:['password']}
+ })
     .then(dbUserData => res.json(dbUserData))
     .catch(err => {    
      console.log(err);
@@ -13,6 +16,8 @@ router.get('/',(req,res)=>{
 // GET/api/useres/1
 router.get('/:id',(req,res)=>{
     User.findOne({
+      // this line to protect the password
+        attributes:{exclude:['password']},
         where: {
           id: req.params.id
         }
@@ -44,10 +49,31 @@ router.post('/',(req,res)=>{
         });
 });
 
+//Authentication
+router.post('/login',(req,res)=>{
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  }).then(dbUserData => {
+    if (!dbUserData) {
+      res.status(400).json({ message: 'No user with that email address!' });
+      return;
+    }
+
+    res.json({ user: dbUserData });
+
+    // Verify user
+
+  });  
+
+});
+
 
 //PUT/api/users/1
 router.put('/:id',(req,res)=>{
     User.update(req.body, {
+         individualHooks:true,
         where: {
           id: req.params.id
         }
@@ -84,3 +110,6 @@ router.delete('/:id',(req,res)=>{
           res.status(500).json(err);
         });
 });
+
+
+module.exports = router;
