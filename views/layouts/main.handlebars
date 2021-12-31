@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<header>
-    <h1>
-      <a href="/">Tech Blog</a>
-    </h1>
-    <nav>
-      <a href="/login">login</a>
-    </nav>
-    <nav>
-       <button id="logout" class="btn-no-style">logout</button>
-      <a href="/login">login</a>
-    </nav>
-  </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Just Tech News</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
 
 <body>
   <div class="wrapper">
     <header>
       <h1>
-        <a href="/">Tech Blog</a>
+        <a href="/">Just Tech News</a>
       </h1>
+      <nav>
+        {{#if loggedIn}}
+        <button id="logout" class="btn-no-style">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+      </nav>
     </header>
     <main>
       {{{ body }}}
@@ -28,7 +29,10 @@
       Thanks for visiting!
     </footer>
   </div>
+  
+  {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>
