@@ -1,8 +1,17 @@
-<article class="post">
-  <div class="title">
-   <a href="{{post_url}}" target="_blank">{{title}}</a>
-   <span>({{format_url post_url}})</span>
+
+
+
+
+<div class="card">
+  <div class="card-header">
+   {{title}}
   </div>
-    <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{content}}</p>
+      <footer class="blockquote-footer"><a href="/post/{{id}}">{{comments.length}} comment(s)</a>
+
+      </footer>
+    </blockquote>
   </div>
-</article>
+</div>

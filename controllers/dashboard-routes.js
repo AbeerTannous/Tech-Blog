@@ -13,7 +13,7 @@ const withAuth = require('../utils/auth');
       },
       attributes: [
         'id',
-        'post_url',
+        'content',
         'title',
         'created_at',
       ],
@@ -47,7 +47,7 @@ const withAuth = require('../utils/auth');
     Post.findByPk(req.params.id, {
       attributes: [
         'id',
-        'post_url',
+        'content',
         'title',
         'created_at',
         
