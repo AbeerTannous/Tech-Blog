@@ -24,7 +24,7 @@
 
   ## deployed application URL
        
-       https://quiet-springs-42347.herokuapp.com/
+      https://still-fjord-94065.herokuapp.com/
 
   ## Contributing 
 
